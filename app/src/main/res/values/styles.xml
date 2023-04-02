@@ -6,6 +6,8 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorBackgroundFloating">@color/colorBackgroundFloating</item>
+        <item name="android:textSize">@dimen/default_text_size</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -17,4 +19,11 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="RadioButtonStyle">
+        <item name="android:layout_marginStart">@dimen/spacing_size_3</item>
+        <item name="android:layout_marginEnd">@dimen/spacing_size_3</item>
+        <item name="android:layout_marginBottom">@dimen/spacing_size_4</item>
+        <item name="android:paddingStart">@dimen/spacing_size_1</item>
+        <item name="android:buttonTint">@color/colorAccent</item>
+    </style>
 </resources>
