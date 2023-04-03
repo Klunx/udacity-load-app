@@ -5,14 +5,22 @@
 
     <string name="notification_title">Udacity: Android Kotlin Nanodegree </string>
     <string name="notification_description">The Project 3 repository is downloaded</string>
+    <string name="notification_check_status">Check the status</string>
     <string name="notification_button">See changes</string>
+    <string name="notification_channel_id" translatable="false">channelId</string>
+    <string name="notification_channel_name" translatable="true">Load App</string>
 
     <string name="button_name">Download</string>
     <string name="button_loading">We are loading </string>
     <string name="title_activity_detail">DetailActivity</string>
-    <string name="download_bumptech_glide">https://github.com/bumptech/glide</string>
-    <string name="download_udacity_nd940_c3_advanced_android_programming_project_starters">https://github.com/udacity/nd940-c3-advanced-android-programming-project-starters</string>
-    <string name="download_square_retrofit">https://github.com/square/retrofit</string>
+    <string name="download_glide">Glide - Image loading library by BumpTech</string>
+    <string name="download_loadapp">LoadApp - Current repository by Udacity</string>
+    <string name="download_retrofit">Retrofit - TypeSafe HTTP client for Android and Jave by Square, Inc</string>
     <string name="cloud_image">Cloud Image</string>
     <string name="empty_selection">Please select the file to download</string>
+    <string name="detail_file_name">File name:</string>
+    <string name="detail_status">Status</string>
+    <string name="success">Success</string>
+    <string name="fail">Fail</string>
+    <string name="ok">Ok</string>
 </resources>

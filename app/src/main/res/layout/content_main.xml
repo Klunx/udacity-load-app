@@ -36,24 +36,24 @@
             style="@style/RadioButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/download_bumptech_glide" />
+            android:text="@string/download_glide" />
 
         <RadioButton
             android:id="@+id/radio_starter"
             style="@style/RadioButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/download_udacity_nd940_c3_advanced_android_programming_project_starters" />
+            android:text="@string/download_loadapp" />
 
         <RadioButton
             android:id="@+id/radio_retrofit"
             style="@style/RadioButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/download_square_retrofit" />
+            android:text="@string/download_retrofit" />
     </RadioGroup>
 
-    <com.udacity.LoadingButton
+    <com.udacity.customview.LoadingButton
         android:id="@+id/custom_button"
         android:layout_width="0dp"
         android:layout_height="60dp"
