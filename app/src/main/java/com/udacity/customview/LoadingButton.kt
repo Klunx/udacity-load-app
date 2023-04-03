@@ -1,10 +1,9 @@
-package com.udacity
+package com.udacity.customview
 
 import android.animation.ValueAnimator
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Canvas
-import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Rect
 import android.graphics.Typeface
@@ -12,6 +11,7 @@ import android.util.AttributeSet
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.core.content.withStyledAttributes
+import com.udacity.R
 import kotlin.properties.Delegates
 
 class LoadingButton @JvmOverloads constructor(
