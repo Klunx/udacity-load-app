@@ -1,5 +1,6 @@
 package com.udacity.util
 
+import android.annotation.SuppressLint
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
@@ -10,6 +11,11 @@ import com.udacity.R
 
 private val NOTIFICATION_ID = 0
 
+/**
+ *
+ * Approach taken from the course.
+ */
+@SuppressLint("UnspecifiedImmutableFlag")
 fun NotificationManager.sendNotification(applicationContext: Context, status: String, repository: String) {
 
     val contentIntent = Intent(applicationContext, DetailActivity::class.java)
@@ -23,7 +29,7 @@ fun NotificationManager.sendNotification(applicationContext: Context, status: St
         applicationContext,
         NOTIFICATION_ID,
         contentIntent,
-        PendingIntent.FLAG_UPDATE_CURRENT
+        PendingIntent.FLAG_CANCEL_CURRENT
     )
 
     val builder = NotificationCompat.Builder(
@@ -39,7 +45,6 @@ fun NotificationManager.sendNotification(applicationContext: Context, status: St
             applicationContext.getString(R.string.notification_check_status),
             contentPendingIntent
         )
-
         .setPriority(NotificationCompat.PRIORITY_HIGH)
     notify(NOTIFICATION_ID, builder.build())
 }
