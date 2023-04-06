@@ -40,7 +40,7 @@ class DetailActivity : AppCompatActivity() {
     private fun validateStatus(status: String) {
         status_value.apply {
             when (status) {
-                getString(R.string.success) -> setTextColor(getColor(R.color.colorPrimary))
+                getString(R.string.success) -> setTextColor(getColor(R.color.colorPrimaryDark))
                 getString(R.string.fail) -> setTextColor(getColor(R.color.colorAccent))
             }
         }

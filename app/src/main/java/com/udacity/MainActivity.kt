@@ -14,8 +14,8 @@ import android.os.Bundle
 import android.widget.RadioButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
+import com.udacity.customview.ButtonState
 import com.udacity.util.sendNotification
 import kotlinx.android.synthetic.main.activity_main.toolbar
 import kotlinx.android.synthetic.main.content_main.custom_button
@@ -24,10 +24,6 @@ import kotlinx.android.synthetic.main.content_main.selected_opt
 class MainActivity : AppCompatActivity() {
 
     private var downloadID: Long = 0
-
-    /*
-    private lateinit var action: NotificationCompat.Action
-     */
     private lateinit var selectedRadioButton: RadioButton
     private lateinit var selectedRepo: String
 
@@ -39,6 +35,7 @@ class MainActivity : AppCompatActivity() {
         registerReceiver(receiver, IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE))
 
         custom_button.setOnClickListener {
+            it.isClickable = false
             val selectedId = selected_opt.checkedRadioButtonId
             if (selectedId != -1) {
                 selectedRadioButton = findViewById(selectedId)
@@ -49,6 +46,7 @@ class MainActivity : AppCompatActivity() {
                     R.id.radio_retrofit -> download(RETROFIT_URL)
                 }
             } else {
+                it.isClickable = true
                 Toast.makeText(applicationContext, getString(R.string.empty_selection), Toast.LENGTH_SHORT).show()
             }
         }
@@ -59,25 +57,25 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
-    // https://medium.com/@aungkyawmyint_26195/downloading-file-properly-in-android-d8cc28d25aca
     private val receiver = object : BroadcastReceiver() {
-
         override fun onReceive(context: Context?, intent: Intent?) {
             val notificationManager = ContextCompat.getSystemService(
                 applicationContext,
                 NotificationManager::class.java
             ) as NotificationManager
-
             val id = intent?.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1)
             if (id != -1L) {
+                custom_button.changeState(ButtonState.Completed)
                 notificationManager.sendNotification(applicationContext, getString(R.string.success), selectedRepo)
             } else {
+                custom_button.changeState(ButtonState.Completed)
                 notificationManager.sendNotification(applicationContext, getString(R.string.fail), selectedRepo)
             }
         }
     }
 
     private fun download(url: String) {
+        custom_button.changeState(ButtonState.Loading)
         val request =
             DownloadManager.Request(Uri.parse(url))
                 .setTitle(getString(R.string.app_name))
@@ -87,46 +85,8 @@ class MainActivity : AppCompatActivity() {
                 .setAllowedOverRoaming(true)
         val downloadManager = getSystemService(DOWNLOAD_SERVICE) as DownloadManager
         downloadID = downloadManager.enqueue(request)// enqueue puts the download request in the queue.
-        getDownloadStatus(downloadManager)
-
     }
 
-    private fun getDownloadStatus(downloadManager: DownloadManager) {
-        try {
-            //https://medium.com/@aungkyawmyint_26195/downloading-file-properly-in-android-d8cc28d25aca
-            var haveNotFinishDownload = true
-            var progress: Int
-
-            while (haveNotFinishDownload) {
-                val query = DownloadManager.Query()
-                query.setFilterById(downloadID)
-                val cursor = downloadManager.query(query)
-                if (cursor.moveToFirst()) {
-                    when (cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_STATUS))) {
-                        DownloadManager.STATUS_RUNNING -> {
-                            val total = cursor.getLong(cursor.getColumnIndex(DownloadManager.COLUMN_TOTAL_SIZE_BYTES))
-                            if (total >= 0) {
-                                val downloaded = cursor.getLong(cursor.getColumnIndex(DownloadManager.COLUMN_BYTES_DOWNLOADED_SO_FAR))
-                                //progress = (((downloaded * 100L) / total).toInt())
-                            }
-                        }
-
-                        DownloadManager.STATUS_SUCCESSFUL -> {
-                            //progress = 100
-                            haveNotFinishDownload = false
-                        }
-
-                        DownloadManager.STATUS_FAILED -> {
-                            haveNotFinishDownload = false
-                        }
-                    }
-                }
-            }
-        } catch (e: Exception) {
-
-        }
-
-    }
     private fun createChannel(channelId: String, channelName: String) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val notificationChannel = NotificationChannel(
