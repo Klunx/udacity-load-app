@@ -1,5 +1,7 @@
 # udacity-load-app
 
+https://user-images.githubusercontent.com/13505880/230589046-f6a2e021-b38b-4960-8ddc-c4009e72307b.mov
+
 The LoadApp has the purpose to demonstrate the use of Notifications, MotionScene, and custom views.
 
 This includes features like:
