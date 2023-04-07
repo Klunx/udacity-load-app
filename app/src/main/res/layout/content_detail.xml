@@ -1,12 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    app:layoutDescription="@xml/detail_scene"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".detail.ui.DetailActivity"
     tools:showIn="@layout/activity_detail">
+
+    <TextView
+        android:id="@+id/splash"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/colorAccent"
+        android:gravity="center_vertical"
+        android:padding="@dimen/spacing_size_3"
+        android:text="@string/click_on_the_screen_to_reveal_the_status"
+        android:textColor="@color/white" />
 
     <TextView
         android:id="@+id/file_name_label"
@@ -15,7 +26,7 @@
         android:layout_height="wrap_content"
         android:text="@string/detail_file_name"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/splash" />
 
     <TextView
         android:id="@+id/file_name_value"
@@ -24,7 +35,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/file_name_label"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/splash" />
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/barrier"
@@ -63,4 +74,4 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.motion.widget.MotionLayout>

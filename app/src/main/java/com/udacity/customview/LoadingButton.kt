@@ -9,13 +9,17 @@ import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.RectF
 import android.graphics.Typeface
+import android.os.Build
 import android.util.AttributeSet
 import android.view.View
+import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
+import androidx.core.content.res.getColorOrThrow
 import androidx.core.content.withStyledAttributes
 import com.udacity.R
 import kotlin.properties.Delegates
 
+@RequiresApi(Build.VERSION_CODES.Q)
 class LoadingButton @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : View(context, attrs, defStyleAttr) {
@@ -30,6 +34,7 @@ class LoadingButton @JvmOverloads constructor(
     private var progressCircle = 0f
 
     private var textButton = ""
+    private var initialColor: Int = 0
 
     private var valueAnimator = ValueAnimator()
 
@@ -37,7 +42,7 @@ class LoadingButton @JvmOverloads constructor(
      * The button behaviour and the animation was inspired from here:
      * https://knowledge.udacity.com/questions/911544?fbclid=IwAR1rbb0VESf-tEti0yLTXIPqklxPhw_LZb6wjzafseRsecVO8rK78R1sBes
      */
-    private var buttonState: ButtonState by Delegates.observable<ButtonState>(ButtonState.Completed) { p, old, new ->
+    private var buttonState: ButtonState by Delegates.observable<ButtonState>(ButtonState.Completed) { _, _, new ->
         when (new) {
             ButtonState.Clicked -> {
                 invalidate()
@@ -78,6 +83,7 @@ class LoadingButton @JvmOverloads constructor(
             widthSize = getDimension(R.styleable.LoadingButton_widthSize, 0f).toInt()
             heightSize = getDimension(R.styleable.LoadingButton_widthSize, 0f).toInt()
             textButton = getString(R.styleable.LoadingButton_textButton).toString()
+            initialColor = getColorOrThrow(R.styleable.LoadingButton_initialColour)
         }
     }
 
@@ -113,7 +119,7 @@ class LoadingButton @JvmOverloads constructor(
     }
 
     private fun drawBackground(canvas: Canvas) {
-        paint.color = ContextCompat.getColor(context, R.color.colorPrimary)
+        paint.color = initialColor
         canvas.drawRect(0f, 0f, width.toFloat(), height.toFloat(), paint)
 
         if (buttonState == ButtonState.Loading) {

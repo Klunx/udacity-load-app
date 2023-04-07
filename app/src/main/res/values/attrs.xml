@@ -4,5 +4,6 @@
         <attr name="widthSize" format="dimension" />
         <attr name="heightSize" format="dimension" />
         <attr name="textButton" format="string|reference" />
+        <attr name="initialColour" format="color" />
     </declare-styleable>
 </resources>

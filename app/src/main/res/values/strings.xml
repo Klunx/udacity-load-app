@@ -23,4 +23,5 @@
     <string name="success">Success</string>
     <string name="fail">Fail</string>
     <string name="ok">Ok</string>
+    <string name="click_on_the_screen_to_reveal_the_status">Click on the screen to reveal the status.</string>
 </resources>
