@@ -2,6 +2,7 @@
 
 https://user-images.githubusercontent.com/13505880/230589046-f6a2e021-b38b-4960-8ddc-c4009e72307b.mov
 
+
 The LoadApp has the purpose to demonstrate the use of Notifications, MotionScene, and custom views.
 
 This includes features like:
@@ -22,8 +23,11 @@ This includes features like:
 ### Dependencies
 
 androidx.appcompat:appcompat:1.2.0 
+
 androidx.core:core-ktx:1.3.1 
+
 androidx.constraintlayout:constraintlayout:2.0.0-rc1 
+
 com.google.android.material:material:1.0.0
     
 ### Installation
